@@ -1,32 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Character encoding and viewport for proper mobile rendering -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Page description for SEO and social sharing -->
     <meta
       name="description"
       content="SecurePass is a modern password generator that creates strong, local-only passwords for better account security."
     />
     <title>SecurePass | Password Generator</title>
+    <!-- Font preconnect hints for faster Google Fonts loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Inter font family for modern typography -->
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <!-- Link to external stylesheet -->
     <link rel="stylesheet" href="style.css" />
   </head>
   <body class="theme-dark">
-    <!-- App shell for layout framing -->
+    <!-- Main app container for semantic layout -->
     <div class="app-shell">
-      <!-- Top navigation -->
+      <!-- Header with navigation and theme toggle -->
       <header class="topbar">
         <nav class="nav container" aria-label="Main navigation">
+          <!-- Brand logo and link to top -->
           <a href="#generator" class="brand" aria-label="SecurePass home">
             <span class="brand-mark">S</span>
             <span>SecurePass</span>
           </a>
 
+          <!-- Navigation links to different sections -->
           <div class="nav-links" aria-label="Section links">
             <a href="#generator">Generator</a>
             <a href="#strength">Password Strength</a>
@@ -34,6 +41,7 @@
             <a href="#about">About</a>
           </div>
 
+          <!-- Dark/Light mode toggle button -->
           <button
             id="theme-toggle"
             class="theme-toggle"
@@ -47,8 +55,9 @@
       </header>
 
       <main class="container page-content">
-        <!-- Generator hero section -->
+        <!-- Hero section - Main password generator interface -->
         <section id="generator" class="hero card" aria-labelledby="generator-title">
+          <!-- Descriptive hero copy -->
           <div class="hero-copy">
             <p class="eyebrow">Professional password generation</p>
             <h1 id="generator-title">Create stronger passwords in seconds.</h1>
@@ -57,9 +66,12 @@
             </p>
           </div>
 
+          <!-- Password generator panel with controls and display -->
           <div class="generator-panel">
+            <!-- Password output display with action buttons -->
             <div class="password-display" aria-live="polite">
               <label class="sr-only" for="password-output">Generated password</label>
+              <!-- Read-only input showing the generated password -->
               <input
                 id="password-output"
                 type="text"
@@ -68,27 +80,35 @@
                 aria-label="Generated password"
               />
 
+              <!-- Buttons for password manipulation -->
               <div class="display-actions">
+                <!-- Toggle password visibility (show/hide) -->
                 <button id="toggle-visibility" type="button" class="icon-btn" aria-label="Show or hide password">
                   <span aria-hidden="true">👁</span>
                 </button>
+                <!-- Copy password to clipboard -->
                 <button id="copy-password" type="button" class="icon-btn" aria-label="Copy generated password">
                   <span aria-hidden="true">Copy</span>
                 </button>
+                <!-- Generate new password (refresh) -->
                 <button id="regenerate-password" type="button" class="icon-btn" aria-label="Generate another password">
                   <span aria-hidden="true">↻</span>
                 </button>
               </div>
             </div>
 
+            <!-- Password strength indicator -->
             <div class="strength-panel" aria-live="polite">
               <div class="strength-row">
                 <span>Password Strength</span>
+                <!-- Dynamic strength label (updates based on password) -->
                 <strong id="strength-label">Very Weak</strong>
               </div>
+              <!-- Visual strength progress bar -->
               <div class="strength-bar" aria-hidden="true">
                 <div id="strength-fill"></div>
               </div>
+              <!-- Strength scale reference -->
               <div class="strength-scale" aria-label="Strength scale">
                 <span>Very Weak</span>
                 <span>Weak</span>
@@ -98,6 +118,7 @@
               </div>
             </div>
 
+            <!-- Quick preset length buttons -->
             <div class="preset-row" aria-label="Quick generate options">
               <button class="preset-btn" type="button" data-length="12">12</button>
               <button class="preset-btn" type="button" data-length="16">16</button>
@@ -105,10 +126,13 @@
               <button class="preset-btn" type="button" data-length="32">32</button>
             </div>
 
+            <!-- Main action buttons -->
             <div class="action-row">
+              <!-- Primary button for password generation -->
               <button id="generate-password" type="button" class="primary-btn">
                 Generate Password
               </button>
+              <!-- Toggle between memorable and random mode -->
               <button id="memorable-toggle" type="button" class="secondary-btn">
                 Memorable Mode
               </button>
@@ -116,45 +140,56 @@
           </div>
         </section>
 
+        <!-- Two-column layout for settings and history -->
         <section class="content-grid">
-          <!-- Password settings panel -->
+          <!-- Left column: Password settings and customization options -->
           <aside id="strength" class="settings card" aria-labelledby="settings-title">
             <div class="section-heading">
               <h2 id="settings-title">Password Settings</h2>
             </div>
 
+            <!-- Password length slider -->
             <div class="slider-block">
               <div class="slider-label-row">
                 <label for="length-slider">Password Length</label>
+                <!-- Dynamic length display (4-64 characters) -->
                 <span id="length-value" class="length-pill">16</span>
               </div>
               <input id="length-slider" type="range" min="4" max="64" value="16" />
             </div>
 
+            <!-- Character type selection checkboxes -->
             <div class="checkbox-grid" aria-label="Character type selection">
+              <!-- Uppercase letters (A-Z) -->
               <label class="check-item">
                 <input id="uppercase" type="checkbox" checked />
                 <span>Uppercase</span>
               </label>
+              <!-- Lowercase letters (a-z) -->
               <label class="check-item">
                 <input id="lowercase" type="checkbox" checked />
                 <span>Lowercase</span>
               </label>
+              <!-- Numbers (0-9) -->
               <label class="check-item">
                 <input id="numbers" type="checkbox" checked />
                 <span>Numbers</span>
               </label>
+              <!-- Special symbols (!@#$%^&*) -->
               <label class="check-item">
                 <input id="symbols" type="checkbox" checked />
                 <span>Symbols</span>
               </label>
             </div>
 
+            <!-- Advanced exclusion options -->
             <div class="toggle-list">
+              <!-- Exclude look-alike characters (O/0, I/1, etc.) -->
               <label class="switch-item" for="exclude-similar">
                 <input id="exclude-similar" type="checkbox" />
                 <span>Exclude similar characters</span>
               </label>
+              <!-- Exclude visually confusing symbols like brackets and braces -->
               <label class="switch-item" for="exclude-ambiguous">
                 <input id="exclude-ambiguous" type="checkbox" />
                 <span>Exclude ambiguous symbols</span>
@@ -162,36 +197,43 @@
             </div>
           </aside>
 
-          <!-- Password history panel -->
+          <!-- Right column: Password history and previous generations -->
           <section id="tips" class="history card" aria-labelledby="history-title">
             <div class="section-heading">
               <h2 id="history-title">Password History</h2>
+              <!-- Button to clear all saved history -->
               <button id="clear-history" type="button" class="link-btn">Clear History</button>
             </div>
 
+            <!-- Dynamic list of previously generated passwords -->
             <ul id="history-list" class="history-list" aria-live="polite"></ul>
           </section>
         </section>
 
-        <!-- Security guidance section -->
+        <!-- Security information and best practices section -->
         <section id="about" class="info-panel card" aria-labelledby="security-title">
           <div class="section-heading compact">
             <h2 id="security-title">Security Information</h2>
           </div>
 
+          <!-- Security tips grid -->
           <div class="info-grid">
+            <!-- Tip 1: Local generation -->
             <article class="info-card">
               <h3>Local generation</h3>
               <p>Passwords are generated directly in your browser and never sent to a server.</p>
             </article>
+            <!-- Tip 2: Unique per account -->
             <article class="info-card">
               <h3>Unique per account</h3>
               <p>Use a unique password for every account to reduce the impact of a single breach.</p>
             </article>
+            <!-- Tip 3: Length matters -->
             <article class="info-card">
               <h3>Longer is stronger</h3>
               <p>Longer passwords with more character variety are harder for attackers to guess.</p>
             </article>
+            <!-- Tip 4: Privacy protection -->
             <article class="info-card">
               <h3>Never share</h3>
               <p>Do not reveal passwords to anyone, even trusted contacts or support teams.</p>
@@ -200,6 +242,7 @@
         </section>
       </main>
 
+      <!-- Site footer with app description -->
       <footer class="site-footer">
         <div class="container footer-inner">
           <span>SecurePass — Generate strong passwords locally and securely.</span>
@@ -207,9 +250,10 @@
       </footer>
     </div>
 
-    <!-- Toast notification container -->
+    <!-- Toast notification container for temporary feedback messages -->
     <div id="toast-container" class="toast-container" aria-live="assertive" aria-atomic="true"></div>
 
+    <!-- Main application JavaScript file -->
     <script src="script.js"></script>
   </body>
 </html>
