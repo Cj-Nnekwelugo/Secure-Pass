@@ -1,104 +1,140 @@
 /* ==========================================================
    Global styles and theme variables
    ========================================================== */
+
+/* Dark theme color palette (default) */
 :root {
-  --bg: #07111d;
-  --bg-alt: #0d1b2c;
-  --bg-soft: rgba(15, 23, 42, 0.8);
-  --card: rgba(17, 24, 39, 0.7);
-  --card-strong: rgba(15, 23, 42, 0.92);
-  --surface: rgba(19, 31, 47, 0.9);
-  --surface-strong: rgba(24, 37, 57, 0.96);
-  --border: rgba(148, 163, 184, 0.18);
-  --text: #e2e8f0;
-  --text-soft: #94a3b8;
-  --muted: #cbd5e1;
-  --primary: #7c5cff;
-  --primary-strong: #a78bfa;
-  --secondary: #38bdf8;
-  --success: #34d399;
-  --warn: #fbbf24;
-  --danger: #f87171;
-  --shadow: 0 20px 60px rgba(2, 6, 23, 0.5);
-  --focus: 0 0 0 3px rgba(124, 92, 255, 0.35);
-  --strength-0: #f87171;
-  --strength-1: #fb923c;
-  --strength-2: #fbbf24;
-  --strength-3: #34d399;
-  --strength-4: #22c55e;
+  /* Background colors */
+  --bg: #07111d;              /* Primary background */
+  --bg-alt: #0d1b2c;          /* Alternate background for contrast */
+  --bg-soft: rgba(15, 23, 42, 0.8); /* Semi-transparent background */
+  
+  /* Card and surface colors */
+  --card: rgba(17, 24, 39, 0.7);           /* Card background */
+  --card-strong: rgba(15, 23, 42, 0.92);   /* More opaque card background */
+  --surface: rgba(19, 31, 47, 0.9);        /* Surface element background */
+  --surface-strong: rgba(24, 37, 57, 0.96); /* Strong surface background */
+  
+  /* Text and border colors */
+  --border: rgba(148, 163, 184, 0.18); /* Border color (low opacity) */
+  --text: #e2e8f0;             /* Primary text color */
+  --text-soft: #94a3b8;        /* Secondary text color */
+  --muted: #cbd5e1;            /* Muted text color */
+  
+  /* Brand colors */
+  --primary: #7c5cff;         /* Primary action color (purple) */
+  --primary-strong: #a78bfa;  /* Lighter primary for hover states */
+  --secondary: #38bdf8;       /* Secondary action color (cyan) */
+  
+  /* Status colors */
+  --success: #34d399;  /* Success state (green) */
+  --warn: #fbbf24;     /* Warning state (yellow) */
+  --danger: #f87171;   /* Danger state (red) */
+  
+  /* Shadow and focus */
+  --shadow: 0 20px 60px rgba(2, 6, 23, 0.5);        /* Drop shadow */
+  --focus: 0 0 0 3px rgba(124, 92, 255, 0.35);      /* Focus ring style */
+  
+  /* Password strength indicator colors */
+  --strength-0: #f87171;  /* Very Weak (red) */
+  --strength-1: #fb923c;  /* Weak (orange) */
+  --strength-2: #fbbf24;  /* Medium (yellow) */
+  --strength-3: #34d399;  /* Strong (green) */
+  --strength-4: #22c55e;  /* Very Strong (bright green) */
 }
 
+/* Light theme color palette override */
 body.light {
+  /* Light background colors */
   --bg: #edf4ff;
   --bg-alt: #dfeaff;
   --bg-soft: rgba(255, 255, 255, 0.78);
+  
+  /* Light card colors */
   --card: rgba(255, 255, 255, 0.7);
   --card-strong: rgba(255, 255, 255, 0.95);
   --surface: rgba(255, 255, 255, 0.9);
   --surface-strong: rgba(240, 247, 255, 0.98);
+  
+  /* Light borders and text */
   --border: rgba(148, 163, 184, 0.32);
-  --text: #0f172a;
+  --text: #0f172a;     /* Dark text for light theme */
   --text-soft: #475569;
   --muted: #243244;
+  
+  /* Light theme brand colors */
   --primary: #5b4bdf;
   --primary-strong: #7c5cff;
   --secondary: #0284c7;
+  
+  /* Light theme shadow */
   --shadow: 0 22px 63px rgba(71, 85, 105, 0.18);
   --focus: 0 0 0 3px rgba(91, 75, 223, 0.24);
 }
 
+/* Box sizing reset for all elements */
 * {
   box-sizing: border-box;
 }
 
+/* Smooth scrolling behavior */
 html {
   scroll-behavior: smooth;
 }
 
+/* Base body styles */
 body {
   margin: 0;
   min-height: 100vh;
   font-family: 'Inter', sans-serif;
+  /* Gradient background with radial highlights */
   background:
     radial-gradient(circle at top left, rgba(124, 92, 255, 0.25), transparent 32%),
     radial-gradient(circle at bottom right, rgba(56, 189, 248, 0.18), transparent 35%),
     linear-gradient(135deg, var(--bg), var(--bg-alt));
   color: var(--text);
-  transition: background 0.3s ease, color 0.3s ease;
+  transition: background 0.3s ease, color 0.3s ease; /* Smooth theme transition */
 }
 
+/* Image and SVG reset */
 img,
 svg {
   display: block;
   max-width: 100%;
 }
 
+/* Link default styling */
 a {
   color: inherit;
   text-decoration: none;
 }
 
+/* Button and input inherit font */
 button,
 input {
   font: inherit;
 }
 
+/* Cursor pointer for interactive elements */
 button {
   cursor: pointer;
 }
 
+/* Focus visible styling for accessibility */
 button:focus-visible,
 input:focus-visible,
 a:focus-visible {
   outline: none;
-  box-shadow: var(--focus);
+  box-shadow: var(--focus); /* Custom focus ring */
 }
 
+/* Main container - responsive width */
 .container {
   width: min(1180px, calc(100% - 32px));
   margin: 0 auto;
 }
 
+/* App shell - full viewport height wrapper */
 .app-shell {
   min-height: 100vh;
 }
@@ -106,19 +142,23 @@ a:focus-visible {
 /* ==========================================================
    Header and navigation styles
    ========================================================== */
+
+/* Sticky header with glassmorphic effect */
 .topbar {
   position: sticky;
   top: 0;
   z-index: 10;
-  backdrop-filter: blur(14px);
-  background: rgba(7, 17, 29, 0.42);
+  backdrop-filter: blur(14px);        /* Frosted glass effect */
+  background: rgba(7, 17, 29, 0.42);  /* Semi-transparent background */
   border-bottom: 1px solid var(--border);
 }
 
+/* Light theme header adjustment */
 body.light .topbar {
   background: rgba(255, 255, 255, 0.3);
 }
 
+/* Navigation flex layout */
 .nav {
   display: flex;
   align-items: center;
@@ -127,6 +167,7 @@ body.light .topbar {
   gap: 20px;
 }
 
+/* Brand logo and text */
 .brand {
   display: inline-flex;
   align-items: center;
@@ -136,6 +177,7 @@ body.light .topbar {
   font-size: 1.12rem;
 }
 
+/* Brand mark - colorful square with icon */
 .brand-mark {
   display: inline-flex;
   align-items: center;
@@ -143,7 +185,7 @@ body.light .topbar {
   width: 36px;
   height: 36px;
   border-radius: 12px;
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  background: linear-gradient(135deg, var(--primary), var(--secondary)); /* Gradient background */
   box-shadow: 0 10px 24px rgba(124, 92, 255, 0.35);
   font-weight: 800;
 }
@@ -156,11 +198,13 @@ body.light .topbar {
   font-size: 0.96rem;
 }
 
+/* Navigation link styling with animated underline */
 .nav-links a {
   position: relative;
   transition: color 0.2s ease;
 }
 
+/* Animated underline appears on hover */
 .nav-links a::after {
   content: '';
   position: absolute;
@@ -184,6 +228,7 @@ body.light .topbar {
   transform: scaleX(1);
 }
 
+/* Theme toggle button */
 .theme-toggle {
   display: inline-flex;
   align-items: center;
@@ -201,6 +246,7 @@ body.light .topbar {
   border-color: rgba(124, 92, 255, 0.5);
 }
 
+/* Theme icon centered in button */
 .theme-icon {
   width: 1.2rem;
   text-align: center;
