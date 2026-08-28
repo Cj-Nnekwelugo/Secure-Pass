@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="SecurePass is a modern password generator that creates strong, local-only passwords for better account security."
+    />
+    <title>SecurePass | Password Generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="theme-dark">
+    <!-- App shell for layout framing -->
+    <div class="app-shell">
+      <!-- Top navigation -->
+      <header class="topbar">
+        <nav class="nav container" aria-label="Main navigation">
+          <a href="#generator" class="brand" aria-label="SecurePass home">
+            <span class="brand-mark">S</span>
+            <span>SecurePass</span>
+          </a>
+
+          <div class="nav-links" aria-label="Section links">
+            <a href="#generator">Generator</a>
+            <a href="#strength">Password Strength</a>
+            <a href="#tips">Security Tips</a>
+            <a href="#about">About</a>
+          </div>
+
+          <button
+            id="theme-toggle"
+            class="theme-toggle"
+            type="button"
+            aria-label="Toggle dark and light modes"
+          >
+            <span class="theme-icon" aria-hidden="true">🌙</span>
+            <span class="theme-text">Dark</span>
+          </button>
+        </nav>
+      </header>
+
+      <main class="container page-content">
+        <!-- Generator hero section -->
+        <section id="generator" class="hero card" aria-labelledby="generator-title">
+          <div class="hero-copy">
+            <p class="eyebrow">Professional password generation</p>
+            <h1 id="generator-title">Create stronger passwords in seconds.</h1>
+            <p class="hero-text">
+              SecurePass builds high-entropy passwords in your browser so your credentials stay private and protected.
+            </p>
+          </div>
+
+          <div class="generator-panel">
+            <div class="password-display" aria-live="polite">
+              <label class="sr-only" for="password-output">Generated password</label>
+              <input
+                id="password-output"
+                type="text"
+                value=""
+                readonly
+                aria-label="Generated password"
+              />
+
+              <div class="display-actions">
+                <button id="toggle-visibility" type="button" class="icon-btn" aria-label="Show or hide password">
+                  <span aria-hidden="true">👁</span>
+                </button>
+                <button id="copy-password" type="button" class="icon-btn" aria-label="Copy generated password">
+                  <span aria-hidden="true">Copy</span>
+                </button>
+                <button id="regenerate-password" type="button" class="icon-btn" aria-label="Generate another password">
+                  <span aria-hidden="true">↻</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="strength-panel" aria-live="polite">
+              <div class="strength-row">
+                <span>Password Strength</span>
+                <strong id="strength-label">Very Weak</strong>
+              </div>
+              <div class="strength-bar" aria-hidden="true">
+                <div id="strength-fill"></div>
+              </div>
+              <div class="strength-scale" aria-label="Strength scale">
+                <span>Very Weak</span>
+                <span>Weak</span>
+                <span>Medium</span>
+                <span>Strong</span>
+                <span>Very Strong</span>
+              </div>
+            </div>
+
+            <div class="preset-row" aria-label="Quick generate options">
+              <button class="preset-btn" type="button" data-length="12">12</button>
+              <button class="preset-btn" type="button" data-length="16">16</button>
+              <button class="preset-btn" type="button" data-length="20">20</button>
+              <button class="preset-btn" type="button" data-length="32">32</button>
+            </div>
+
+            <div class="action-row">
+              <button id="generate-password" type="button" class="primary-btn">
+                Generate Password
+              </button>
+              <button id="memorable-toggle" type="button" class="secondary-btn">
+                Memorable Mode
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <section class="content-grid">
+          <!-- Password settings panel -->
+          <aside id="strength" class="settings card" aria-labelledby="settings-title">
+            <div class="section-heading">
+              <h2 id="settings-title">Password Settings</h2>
+            </div>
+
+            <div class="slider-block">
+              <div class="slider-label-row">
+                <label for="length-slider">Password Length</label>
+                <span id="length-value" class="length-pill">16</span>
+              </div>
+              <input id="length-slider" type="range" min="4" max="64" value="16" />
+            </div>
+
+            <div class="checkbox-grid" aria-label="Character type selection">
+              <label class="check-item">
+                <input id="uppercase" type="checkbox" checked />
+                <span>Uppercase</span>
+              </label>
+              <label class="check-item">
+                <input id="lowercase" type="checkbox" checked />
+                <span>Lowercase</span>
+              </label>
+              <label class="check-item">
+                <input id="numbers" type="checkbox" checked />
+                <span>Numbers</span>
+              </label>
+              <label class="check-item">
+                <input id="symbols" type="checkbox" checked />
+                <span>Symbols</span>
+              </label>
+            </div>
+
+            <div class="toggle-list">
+              <label class="switch-item" for="exclude-similar">
+                <input id="exclude-similar" type="checkbox" />
+                <span>Exclude similar characters</span>
+              </label>
+              <label class="switch-item" for="exclude-ambiguous">
+                <input id="exclude-ambiguous" type="checkbox" />
+                <span>Exclude ambiguous symbols</span>
+              </label>
+            </div>
+          </aside>
+
+          <!-- Password history panel -->
+          <section id="tips" class="history card" aria-labelledby="history-title">
+            <div class="section-heading">
+              <h2 id="history-title">Password History</h2>
+              <button id="clear-history" type="button" class="link-btn">Clear History</button>
+            </div>
+
+            <ul id="history-list" class="history-list" aria-live="polite"></ul>
+          </section>
+        </section>
+
+        <!-- Security guidance section -->
+        <section id="about" class="info-panel card" aria-labelledby="security-title">
+          <div class="section-heading compact">
+            <h2 id="security-title">Security Information</h2>
+          </div>
+
+          <div class="info-grid">
+            <article class="info-card">
+              <h3>Local generation</h3>
+              <p>Passwords are generated directly in your browser and never sent to a server.</p>
+            </article>
+            <article class="info-card">
+              <h3>Unique per account</h3>
+              <p>Use a unique password for every account to reduce the impact of a single breach.</p>
+            </article>
+            <article class="info-card">
+              <h3>Longer is stronger</h3>
+              <p>Longer passwords with more character variety are harder for attackers to guess.</p>
+            </article>
+            <article class="info-card">
+              <h3>Never share</h3>
+              <p>Do not reveal passwords to anyone, even trusted contacts or support teams.</p>
+            </article>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div class="container footer-inner">
+          <span>SecurePass — Generate strong passwords locally and securely.</span>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Toast notification container -->
+    <div id="toast-container" class="toast-container" aria-live="assertive" aria-atomic="true"></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
