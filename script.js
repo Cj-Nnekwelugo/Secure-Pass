@@ -3,6 +3,10 @@
 // Handles generation, strength scoring, history, theme toggle,
 // and local storage interactions for a production-style UI.
 // ==========================================================
+let welcome = prompt("Welcome to SecurePass! Please enter your name:");
+alert(`Hello, ${welcome || "User"}! Let's generate a secure password for you.`);
+
+let userName = welcome || "User";
 
 const STORAGE_KEYS = {
   history: 'securepass-history',
