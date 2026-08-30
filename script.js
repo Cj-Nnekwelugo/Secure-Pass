@@ -360,7 +360,7 @@ function generateMemorablePassword() {
 
 // Main password generation function
 // Validates settings, generates password using selected mode, updates UI
-function generatePassword() {
+function generatePassword({ notify = false } = {}) {
   sanitizeSettings(); // Ensure valid settings
   setLengthValue(); // Update length display
   applyPresetHighlight(); // Highlight active preset
@@ -383,7 +383,10 @@ function generatePassword() {
   elements.passwordOutput.value = newPassword;
   elements.passwordOutput.type = state.passwordVisible ? 'text' : 'password';
   updateStrengthIndicator(newPassword);
-  showToast('New password generated.', 'success');
+
+  if (notify) {
+    showToast('New password generated.', 'success');
+  }
 }
 
 // Toggles password visibility between masked (•••) and plain text display
@@ -527,7 +530,7 @@ function bindEvents() {
     state.settings.length = clampLength(Number(event.target.value));
     setLengthValue(); // Update display
     applyPresetHighlight(); // Highlight matching preset if any
-    generatePassword(); // Generate new password with new length
+    generatePassword(); // Generate a new password with the updated length but no toast
   });
 
   // Uppercase checkbox - toggle uppercase letters in password
@@ -539,7 +542,7 @@ function bindEvents() {
       state.settings.uppercase = true;
       elements.uppercase.checked = true;
     }
-    generatePassword(); // Regenerate with new settings
+    generatePassword(); // Regenerate with new settings without a success toast
   });
 
   // Lowercase checkbox - toggle lowercase letters in password
@@ -589,13 +592,13 @@ function bindEvents() {
 
   // Generate password button - creates new password and saves to history
   elements.generatePassword.addEventListener('click', () => {
-    generatePassword();
+    generatePassword({ notify: true });
     addCurrentPasswordToHistory();
   });
 
   // Regenerate button (refresh icon) - creates new password and saves to history
   elements.regeneratePassword.addEventListener('click', () => {
-    generatePassword();
+    generatePassword({ notify: true });
     addCurrentPasswordToHistory();
   });
 
@@ -611,7 +614,7 @@ function bindEvents() {
   elements.memorableToggle.addEventListener('click', () => {
     state.settings.memorable = !state.settings.memorable;
     updateCheckboxesFromState(); // Update UI to reflect mode change
-    generatePassword();
+    generatePassword({ notify: true });
     addCurrentPasswordToHistory();
   });
 
@@ -621,7 +624,7 @@ function bindEvents() {
       state.settings.length = Number(button.dataset.length);
       setLengthValue(); // Update display
       applyPresetHighlight(); // Highlight selected preset
-      generatePassword();
+      generatePassword({ notify: true });
       addCurrentPasswordToHistory();
     });
   });
@@ -667,7 +670,7 @@ function initializeApp() {
   setLengthValue(); // Update length display
   updateCheckboxesFromState(); // Sync all checkboxes with state
   bindEvents(); // Attach all event listeners
-  generatePassword(); // Generate initial password
+  generatePassword(); // Generate initial password without a success toast
 }
 
 // Start the app when DOM is ready
