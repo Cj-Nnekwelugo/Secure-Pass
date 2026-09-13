@@ -87,13 +87,13 @@ body {
   margin: 0;
   min-height: 100vh;
   font-family: 'Inter', sans-serif;
-  /* Gradient background with radial highlights */
   background:
     radial-gradient(circle at top left, rgba(124, 92, 255, 0.25), transparent 32%),
     radial-gradient(circle at bottom right, rgba(56, 189, 248, 0.18), transparent 35%),
     linear-gradient(135deg, var(--bg), var(--bg-alt));
   color: var(--text);
-  transition: background 0.3s ease, color 0.3s ease; /* Smooth theme transition */
+  transition: background 0.3s ease, color 0.3s ease;
+  background-attachment: fixed;
 }
 
 /* Image and SVG reset */
@@ -165,6 +165,7 @@ body.light .topbar {
   justify-content: space-between;
   min-height: 80px;
   gap: 20px;
+  padding: 10px 0;
 }
 
 /* Brand logo and text */
@@ -193,6 +194,8 @@ body.light .topbar {
 .nav-links {
   display: flex;
   align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
   gap: 24px;
   color: var(--text-soft);
   font-size: 0.96rem;
@@ -746,11 +749,19 @@ input[type='range'] {
     order: 3;
     width: 100%;
     justify-content: center;
-    flex-wrap: wrap;
+    gap: 12px 18px;
+  }
+
+  .hero-copy h1 {
+    max-width: 14ch;
   }
 }
 
 @media (max-width: 640px) {
+  .container {
+    width: min(100% - 20px, 1180px);
+  }
+
   .page-content {
     padding-top: 28px;
   }
@@ -762,24 +773,39 @@ input[type='range'] {
     padding: 1.1rem;
   }
 
+  .hero {
+    gap: 20px;
+  }
+
+  .hero-copy {
+    padding: 0;
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(2.1rem, 11vw, 3rem);
+    max-width: none;
+  }
+
   .password-display {
     flex-direction: column;
     align-items: stretch;
+    padding: 16px;
   }
 
   .display-actions {
     justify-content: space-between;
+    gap: 10px;
+  }
+
+  .display-actions .icon-btn {
+    flex: 1;
   }
 
   .action-row,
   .checkbox-grid,
   .info-grid {
+    display: grid;
     grid-template-columns: 1fr;
-    display: grid;
-  }
-
-  .action-row {
-    display: grid;
   }
 
   .primary-btn,
@@ -793,10 +819,25 @@ input[type='range'] {
 
   .history-item {
     flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
+  .history-password {
+    width: 100%;
+    white-space: normal;
+    overflow-wrap: anywhere;
   }
 
   .history-actions {
     width: 100%;
     justify-content: flex-end;
+  }
+
+  .brand {
+    font-size: 1rem;
+  }
+
+  .theme-toggle {
+    padding: 0.6rem 0.9rem;
   }
 }
