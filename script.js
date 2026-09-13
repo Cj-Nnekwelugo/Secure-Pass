@@ -520,27 +520,24 @@ function bindEvents() {
     saveThemeToStorage(theme); // Persist theme preference
   });
 
-  // Length slider - updates password length in real-time
+  // Length slider - updates password length in real-time without generating a new password
   elements.lengthSlider.addEventListener('input', (event) => {
     state.settings.length = clampLength(Number(event.target.value));
-    setLengthValue(); // Update display
-    applyPresetHighlight(); // Highlight matching preset if any
-    generatePassword(); // Generate a new password with the updated length but no toast
+    setLengthValue();
+    applyPresetHighlight();
   });
 
-  // Uppercase checkbox - toggle uppercase letters in password
+  // Uppercase checkbox - updates the selected options without generating automatically
   elements.uppercase.addEventListener('change', () => {
     state.settings.uppercase = elements.uppercase.checked;
-    // Prevent unchecking if it's the last option
     if (!state.settings.uppercase && !state.settings.lowercase && !state.settings.numbers && !state.settings.symbols) {
       showToast('At least one option must remain enabled.', 'error');
       state.settings.uppercase = true;
       elements.uppercase.checked = true;
     }
-    generatePassword(); // Regenerate with new settings without a success toast
   });
 
-  // Lowercase checkbox - toggle lowercase letters in password
+  // Lowercase checkbox - updates the selected options without generating automatically
   elements.lowercase.addEventListener('change', () => {
     state.settings.lowercase = elements.lowercase.checked;
     if (!state.settings.uppercase && !state.settings.lowercase && !state.settings.numbers && !state.settings.symbols) {
@@ -548,10 +545,9 @@ function bindEvents() {
       state.settings.lowercase = true;
       elements.lowercase.checked = true;
     }
-    generatePassword();
   });
 
-  // Numbers checkbox - toggle numbers in password
+  // Numbers checkbox - updates the selected options without generating automatically
   elements.numbers.addEventListener('change', () => {
     state.settings.numbers = elements.numbers.checked;
     if (!state.settings.uppercase && !state.settings.lowercase && !state.settings.numbers && !state.settings.symbols) {
@@ -559,10 +555,9 @@ function bindEvents() {
       state.settings.numbers = true;
       elements.numbers.checked = true;
     }
-    generatePassword();
   });
 
-  // Symbols checkbox - toggle special characters in password
+  // Symbols checkbox - updates the selected options without generating automatically
   elements.symbols.addEventListener('change', () => {
     state.settings.symbols = elements.symbols.checked;
     if (!state.settings.uppercase && !state.settings.lowercase && !state.settings.numbers && !state.settings.symbols) {
@@ -570,19 +565,16 @@ function bindEvents() {
       state.settings.symbols = true;
       elements.symbols.checked = true;
     }
-    generatePassword();
   });
 
-  // Exclude similar characters checkbox - removes O/0/I/1/l lookalikes
+  // Exclude similar characters checkbox - updates preferences without generating automatically
   elements.excludeSimilar.addEventListener('change', () => {
     state.settings.excludeSimilar = elements.excludeSimilar.checked;
-    generatePassword();
   });
 
-  // Exclude ambiguous characters checkbox - removes visually confusing symbols
+  // Exclude ambiguous characters checkbox - updates preferences without generating automatically
   elements.excludeAmbiguous.addEventListener('change', () => {
     state.settings.excludeAmbiguous = elements.excludeAmbiguous.checked;
-    generatePassword();
   });
 
   // Generate password button - creates new password and saves to history
@@ -605,22 +597,18 @@ function bindEvents() {
   // Eye icon button - toggles password visibility
   elements.toggleVisibility.addEventListener('click', updatePasswordVisibility);
 
-  // Memorable mode toggle - switches between memorable and random mode
+  // Memorable mode toggle - switches between memorable and random mode without generating immediately
   elements.memorableToggle.addEventListener('click', () => {
     state.settings.memorable = !state.settings.memorable;
-    updateCheckboxesFromState(); // Update UI to reflect mode change
-    generatePassword({ notify: true });
-    addCurrentPasswordToHistory();
+    updateCheckboxesFromState();
   });
 
-  // Preset length buttons (8, 12, 16, 20, 24 chars) - quick length selection
+  // Preset length buttons (8, 12, 16, 20, 24 chars) - quick length selection without immediate generation
   elements.presetButtons.forEach((button) => {
     button.addEventListener('click', () => {
       state.settings.length = Number(button.dataset.length);
-      setLengthValue(); // Update display
-      applyPresetHighlight(); // Highlight selected preset
-      generatePassword({ notify: true });
-      addCurrentPasswordToHistory();
+      setLengthValue();
+      applyPresetHighlight();
     });
   });
 
@@ -659,13 +647,15 @@ function bindEvents() {
 // ==========================================================
 // Sets up the entire application on page load
 function initializeApp() {
-  loadThemeFromStorage(); // Apply saved theme preference
-  loadHistory(); // Load previously saved passwords
-  renderHistory(); // Display history in UI
-  setLengthValue(); // Update length display
-  updateCheckboxesFromState(); // Sync all checkboxes with state
-  bindEvents(); // Attach all event listeners
-  generatePassword(); // Generate initial password without a success toast
+  loadThemeFromStorage();
+  loadHistory();
+  renderHistory();
+  setLengthValue();
+  updateCheckboxesFromState();
+  elements.passwordOutput.value = '';
+  elements.passwordOutput.placeholder = 'Generate a password to display it here';
+  updateStrengthIndicator('');
+  bindEvents();
 }
 
 // Start the app when DOM is ready
