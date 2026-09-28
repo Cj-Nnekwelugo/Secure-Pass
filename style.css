@@ -196,9 +196,10 @@ body.light .topbar {
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 24px;
+  gap: 30px;
   color: var(--text-soft);
   font-size: 0.96rem;
+  font-weight: bold;
 }
 
 /* Navigation link styling with animated underline */
