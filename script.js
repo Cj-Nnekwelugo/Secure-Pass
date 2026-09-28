@@ -48,6 +48,8 @@ const state = {
 const elements = {
   body: document.body,
   themeToggle: document.getElementById('theme-toggle'),
+  menuToggle: document.getElementById('menu-toggle'),
+  navLinks: document.getElementById('nav-links'),
   themeText: document.querySelector('.theme-text'),
   themeIcon: document.querySelector('.theme-icon'),
   passwordOutput: document.getElementById('password-output'),
@@ -511,6 +513,23 @@ function deleteHistoryItem(index) {
 // ==========================================================
 // Attaches all event listeners to UI elements
 function bindEvents() {
+  elements.menuToggle.addEventListener('click', () => {
+    const isExpanded = elements.menuToggle.getAttribute('aria-expanded') === 'true';
+    elements.menuToggle.setAttribute('aria-expanded', String(!isExpanded));
+    elements.menuToggle.setAttribute('aria-label', isExpanded ? 'Open navigation menu' : 'Close navigation menu');
+    elements.menuToggle.firstElementChild.textContent = isExpanded ? '☰' : '×';
+    elements.navLinks.classList.toggle('is-open', !isExpanded);
+  });
+
+  elements.navLinks.addEventListener('click', (event) => {
+    if (event.target instanceof HTMLAnchorElement) {
+      elements.navLinks.classList.remove('is-open');
+      elements.menuToggle.setAttribute('aria-expanded', 'false');
+      elements.menuToggle.setAttribute('aria-label', 'Open navigation menu');
+      elements.menuToggle.firstElementChild.textContent = '☰';
+    }
+  });
+
   // Theme toggle button - switches between light and dark modes
   elements.themeToggle.addEventListener('click', () => {
     const isLight = elements.body.classList.toggle('light');
