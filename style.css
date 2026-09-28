@@ -202,6 +202,19 @@ body.light .topbar {
   font-weight: bold;
 }
 
+.menu-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: rgba(148, 163, 184, 0.08);
+  color: var(--text);
+  font-size: 1.2rem;
+}
+
 /* Navigation link styling with animated underline */
 .nav-links a {
   position: relative;
@@ -836,6 +849,36 @@ input[type='range'] {
 
   .brand {
     font-size: 1rem;
+  }
+
+  .nav {
+    justify-content: space-between;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+    order: 2;
+  }
+
+  .theme-toggle {
+    order: 3;
+  }
+
+  .nav-links {
+    display: none;
+    order: 4;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 4px 0 8px;
+  }
+
+  .nav-links.is-open {
+    display: flex;
+  }
+
+  .nav-links a {
+    padding: 12px 8px;
   }
 
   .theme-toggle {
