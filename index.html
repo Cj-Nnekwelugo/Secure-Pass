@@ -34,12 +34,23 @@
           </a>
 
           <!-- Navigation links to different sections -->
-          <div class="nav-links" aria-label="Section links">
+          <div id="nav-links" class="nav-links" aria-label="Section links">
             <a href="#generator">Generator</a>
             <a href="#strength">Password Strength</a>
             <a href="#tips">Security Tips</a>
             <a href="#about">About</a>
           </div>
+
+          <button
+            id="menu-toggle"
+            class="menu-toggle"
+            type="button"
+            aria-label="Open navigation menu"
+            aria-controls="nav-links"
+            aria-expanded="false"
+          >
+            <span aria-hidden="true">☰</span>
+          </button>
 
           <!-- Dark/Light mode toggle button -->
           <button
