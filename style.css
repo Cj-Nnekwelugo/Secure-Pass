@@ -857,11 +857,11 @@ input[type='range'] {
 
   .menu-toggle {
     display: inline-flex;
-    order: 2;
+    order: 3;
   }
 
   .theme-toggle {
-    order: 3;
+    order: 2;
   }
 
   .nav-links {
