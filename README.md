@@ -1,16 +1,33 @@
-# React + Vite
+# SecurePass
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive password generator built with React, Vite, and Tailwind CSS. Passwords are generated in the browser with the Web Crypto API; the app does not send passwords to a server.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Generate passwords from 8 to 40 characters with selectable lowercase, uppercase, number, and symbol sets.
+- Rate password strength with a visual meter.
+- Copy or regenerate a password.
+- Save labeled passwords locally, then reveal, copy, or delete them.
+- Responsive, keyboard-accessible controls.
 
-## React Compiler
+## Get started
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Requirements: Node.js 20.19+ or 22.12+.
 
-## Expanding the ESLint configuration
+```sh
+npm install
+npm run dev
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Open the local URL printed by Vite. To create and preview a production build:
+
+```sh
+npm run build
+npm run preview
+```
+
+Run the linter with `npm run lint`.
+
+## Important storage note
+
+Saved passwords are stored in this browser's `localStorage`. Browser storage is **not encrypted** and should not be treated as a secure password vault. Anyone with access to this browser profile may be able to access saved entries. Avoid saving sensitive passwords on shared devices; use a trusted password manager for real credentials. Clearing browser data also removes saved entries.
