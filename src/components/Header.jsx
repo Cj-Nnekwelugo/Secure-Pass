@@ -9,9 +9,10 @@ function Header() {
         </span>
         <span className="text-[17px] font-bold tracking-tight text-slate-900">secure<span className="text-violet-600">pass</span></span>
       </a>
-      <div className="flex items-center gap-2 rounded-full border border-slate-200/80 bg-white/70 px-3 py-1.5 text-xs font-medium text-slate-500">
+      <div className="flex items-center gap-2 rounded-full border border-slate-200/80 bg-white/70 px-2.5 py-1.5 text-[11px] font-medium text-slate-500 sm:px-3 sm:text-xs">
         <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-        Generated on your device
+        <span className="sm:hidden">On-device</span>
+        <span className="hidden sm:inline">Generated on your device</span>
       </div>
     </header>
   )

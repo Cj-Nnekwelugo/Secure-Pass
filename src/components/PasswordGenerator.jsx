@@ -45,7 +45,7 @@ function PasswordGenerator({
             <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] font-medium text-slate-300">Private &amp; local</span>
           </div>
 
-          <div className="flex min-h-[4.25rem] items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.07] p-3 pl-4 sm:min-h-[4.75rem] sm:pl-5">
+          <div className="flex min-h-[4.25rem] items-center gap-2 rounded-2xl border border-white/10 bg-white/[0.07] p-2.5 pl-3 sm:min-h-[4.75rem] sm:gap-3 sm:p-3 sm:pl-5">
             <output
               aria-label="Generated password"
               className="min-w-0 flex-1 break-all font-mono text-lg font-medium tracking-wide text-white sm:text-[22px]"
@@ -57,7 +57,7 @@ function PasswordGenerator({
               onClick={() => password && onCopy(password)}
               disabled={!password}
               aria-label="Copy generated password"
-              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-slate-300 transition hover:bg-white/10 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-300 disabled:cursor-not-allowed disabled:opacity-40"
+              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-slate-300 transition hover:bg-white/10 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-300 disabled:cursor-not-allowed disabled:opacity-40"
             >
               <Icon name="copy" className="h-[18px] w-[18px]" />
             </button>
@@ -90,7 +90,7 @@ function PasswordGenerator({
           step="1"
           value={length}
           onChange={(event) => onLengthChange(Number(event.target.value))}
-          className="mt-4 h-2 w-full cursor-pointer appearance-none rounded-full bg-slate-200 accent-violet-600 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet-500"
+          className="mt-3 h-3 w-full cursor-pointer appearance-none rounded-full bg-slate-200 accent-violet-600 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet-500 sm:mt-4"
           aria-label="Password length"
         />
         <div className="mt-1 flex justify-between text-[11px] text-slate-400">
