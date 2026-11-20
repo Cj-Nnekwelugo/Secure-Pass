@@ -1,9 +1,18 @@
 import Icon from './Icon.jsx'
 
 const tips = [
-  'Use a different password for every account.',
-  'Longer passwords are harder to guess.',
-  'Use a trusted password manager for sensitive logins.',
+  {
+    title: 'Make every password unique',
+    detail: 'A separate password for each account helps keep one breach from putting your other accounts at risk.',
+  },
+  {
+    title: 'Go longer when you can',
+    detail: 'More characters create more possible combinations. Use the length control to make a longer password.',
+  },
+  {
+    title: 'Store credentials safely',
+    detail: 'Use a trusted password manager for important logins. This page is a generator, not an encrypted vault.',
+  },
 ]
 
 function TipsCard() {
@@ -14,13 +23,16 @@ function TipsCard() {
           <Icon name="sparkles" className="h-[18px] w-[18px]" />
         </span>
         <div className="min-w-0 flex-1">
-          <h2 id="tips-title" className="text-base font-bold text-slate-900">A few safety tips</h2>
-          <p className="mt-1 text-sm text-slate-500">Small habits make a big difference.</p>
-          <ul className="mt-4 grid gap-3 sm:grid-cols-3">
-            {tips.map((tip) => (
-              <li key={tip} className="flex items-start gap-2 text-xs leading-5 text-slate-600">
-                <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" />
-                {tip}
+          <h2 id="tips-title" className="text-base font-bold text-slate-900">Build better password habits</h2>
+          <p className="mt-1 text-sm leading-6 text-slate-500">A strong password is one part of keeping your accounts safer. These simple habits help, too.</p>
+          <ul className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {tips.map(({ title, detail }) => (
+              <li key={title} className="rounded-2xl border border-violet-100/80 bg-white/75 p-4">
+                <div className="flex items-center gap-2 text-sm font-semibold text-slate-800">
+                  <Icon name="check" className="h-4 w-4 shrink-0 text-emerald-600" />
+                  {title}
+                </div>
+                <p className="mt-2 text-xs leading-5 text-slate-600">{detail}</p>
               </li>
             ))}
           </ul>
