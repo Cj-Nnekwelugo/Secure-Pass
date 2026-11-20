@@ -68,23 +68,27 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen overflow-hidden bg-[#f7f8fc] text-slate-900">
+    <div className="relative isolate min-h-screen min-w-80 overflow-x-clip bg-[#f7f8fc] font-sans text-slate-900 antialiased">
       <div className="pointer-events-none absolute -left-32 top-56 h-72 w-72 rounded-full bg-violet-200/30 blur-3xl" />
       <div className="pointer-events-none absolute -right-36 top-[34rem] h-96 w-96 rounded-full bg-emerald-100/40 blur-3xl" />
-      <div className="relative mx-auto max-w-6xl px-5 pb-12 sm:px-8 lg:px-10">
+      <div className="relative mx-auto max-w-6xl px-4 pb-12 sm:px-8 lg:px-10">
         <Header />
         <main className="mx-auto max-w-4xl">
-          <div className="mb-9 text-center sm:mb-11">
-            <p className="mb-3 inline-flex items-center gap-2 rounded-full border border-violet-100 bg-white/80 px-3.5 py-1.5 text-xs font-semibold tracking-wide text-violet-700 shadow-sm shadow-violet-100/60">
+          <div className="mb-8 text-center sm:mb-11">
+            <p className="mb-3 inline-flex items-center gap-2 rounded-full border border-violet-100 bg-white/80 px-3.5 py-1.5 text-[11px] font-semibold tracking-[0.12em] text-violet-700 shadow-sm shadow-violet-100/60 sm:text-xs">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
               PRIVATE BY DESIGN
             </p>
-            <h1 className="text-3xl font-bold tracking-tight text-slate-950 sm:text-5xl">
+            <h1 className="text-[2rem] font-bold leading-tight tracking-tight text-slate-950 sm:text-5xl">
               Better passwords, <span className="text-violet-600">made easy.</span>
             </h1>
-            <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-slate-500 sm:text-base">
+            <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-slate-500 sm:text-base sm:leading-7">
               Create a strong, one-of-a-kind password in seconds. Everything happens right here in your browser.
             </p>
+            <ul aria-label="SecurePass benefits" className="mx-auto mt-5 flex max-w-2xl flex-wrap justify-center gap-2 text-[11px] font-medium text-slate-600 sm:gap-3 sm:text-xs">
+              <li className="rounded-full border border-slate-200/80 bg-white/75 px-3 py-1.5">Generated with your browser&apos;s secure randomness</li>
+              <li className="rounded-full border border-slate-200/80 bg-white/75 px-3 py-1.5">No account or upload required</li>
+            </ul>
           </div>
 
           <PasswordGenerator
