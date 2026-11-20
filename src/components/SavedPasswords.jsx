@@ -53,7 +53,7 @@ function SavedPasswords({ passwords, error, onDelete, onCopy }) {
                     type="button"
                     onClick={() => setRevealed((current) => ({ ...current, [item.id]: !current[item.id] }))}
                     aria-label={`${isRevealed ? 'Hide' : 'Reveal'} password for ${item.label}`}
-                    className="flex h-9 w-9 items-center justify-center rounded-lg text-slate-500 transition hover:bg-slate-100 hover:text-slate-800 focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-violet-500"
+                    className="flex h-11 w-11 items-center justify-center rounded-lg text-slate-500 transition hover:bg-slate-100 hover:text-slate-800 focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-violet-500"
                   >
                     <Icon name={isRevealed ? 'eyeOff' : 'eye'} />
                   </button>
@@ -61,7 +61,7 @@ function SavedPasswords({ passwords, error, onDelete, onCopy }) {
                     type="button"
                     onClick={() => onCopy(item.password)}
                     aria-label={`Copy password for ${item.label}`}
-                    className="flex h-9 w-9 items-center justify-center rounded-lg text-slate-500 transition hover:bg-violet-50 hover:text-violet-700 focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-violet-500"
+                    className="flex h-11 w-11 items-center justify-center rounded-lg text-slate-500 transition hover:bg-violet-50 hover:text-violet-700 focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-violet-500"
                   >
                     <Icon name="copy" />
                   </button>
@@ -69,7 +69,7 @@ function SavedPasswords({ passwords, error, onDelete, onCopy }) {
                     type="button"
                     onClick={() => onDelete(item.id)}
                     aria-label={`Delete saved password for ${item.label}`}
-                    className="flex h-9 w-9 items-center justify-center rounded-lg text-slate-400 transition hover:bg-rose-50 hover:text-rose-600 focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-rose-500"
+                    className="flex h-11 w-11 items-center justify-center rounded-lg text-slate-400 transition hover:bg-rose-50 hover:text-rose-600 focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-rose-500"
                   >
                     <Icon name="trash" />
                   </button>
